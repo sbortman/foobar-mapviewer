@@ -74,9 +74,11 @@ dependencies {
 
     implementation( 'org.geoscript:geoscript-groovy:1.20.0' ) {
         exclude module: 'gt-swing'
+        exclude module: 'slf4j-log4j12'
+        exclude module: 'groovy-all'
+        exclude module: 'gt-imageio-ext-gdal'
+        exclude module: 'gt-netcdf'
     }
-
-
 }
 
 application {
@@ -85,6 +87,16 @@ application {
 
 java {
     sourceCompatibility = JavaVersion.toVersion("11")
+}
+
+jar {
+    manifest {
+        attributes(
+            'Implementation-Vendor': 'Sun Microsystems, Inc',
+            'Implementation-Title': 'Java Runtime Environment',
+            'Implementation-Version': '17.0.11'
+        )
+    }
 }
 
 tasks.withType(Test) {
